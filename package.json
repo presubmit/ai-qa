@@ -1,0 +1,39 @@
+{
+  "name": "ai-qa",
+  "version": "1.0.0",
+  "description": "AI-powered QA integration testing",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/presubmit/ai-qa.git"
+  },
+  "keywords": [
+    "ai",
+    "qa",
+    "browser",
+    "integration",
+    "testing",
+    "presubmit",
+    "automation",
+    "playwright",
+    "ai",
+    "openai",
+    "chatgpt",
+    "llm",
+    "integration"
+  ],
+  "author": "Presubmit.ai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/presubmit/ai-qa/issues"
+  },
+  "homepage": "https://github.com/presubmit/ai-qa#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
+
