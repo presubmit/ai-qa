@@ -1,5 +1,5 @@
 {
-  "name": "ai-qa",
+  "name": "aiqa",
   "version": "1.0.0",
   "description": "AI-powered QA integration testing",
   "main": "./dist/index.js",

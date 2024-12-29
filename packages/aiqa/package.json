@@ -1,0 +1,62 @@
+{
+  "name": "@presubmit/aiqa",
+  "version": "0.0.1",
+  "description": "AI-powered QA integration testing",
+  "scripts": {
+    "dev": " npx tsx -r dotenv/config src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "playwright install chromium"
+  },
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "internal/dist/**/*",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/presubmit/ai-qa.git"
+  },
+  "keywords": [
+    "ai",
+    "qa",
+    "browser",
+    "integration",
+    "testing",
+    "presubmit",
+    "automation",
+    "playwright",
+    "ai",
+    "openai",
+    "chatgpt",
+    "llm",
+    "integration"
+  ],
+  "author": "Presubmit.ai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/presubmit/ai-qa/issues"
+  },
+  "homepage": "https://github.com/presubmit/ai-qa#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.33.1",
+    "child_process": "^1.0.2",
+    "dotenv": "^16.4.7",
+    "fs": "0.0.1-security",
+    "picocolors": "^1.1.1",
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.18.2"
+  }
+}
