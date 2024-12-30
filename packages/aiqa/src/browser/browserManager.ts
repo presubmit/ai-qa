@@ -3,8 +3,7 @@ import { execSync } from "child_process";
 import pc from "picocolors"
 import fs from "fs/promises";
 
-
-export class QaBrowser {
+export class BrowserManager {
     private browser: Browser | null = null;
     private context: BrowserContext | null = null;
     private page: Page | null = null;
@@ -227,7 +226,9 @@ export class QaBrowser {
             await fs.mkdir(baseFolder, { recursive: true });
         }
 
-        const datetime = new Date().toISOString().replace(/[-:]/g, '');
+        const datetime = new Date().toISOString()
+            .replace(/[-:]/g, '')
+            .replace(/\.\d+Z$/, ''); 
         const screenshotPath = `${baseFolder}/screenshot_${datetime}.jpg`;
 
         await this.page.screenshot({ path: screenshotPath });
@@ -235,4 +236,4 @@ export class QaBrowser {
     }
 }
 
-export default Browser;
+export default BrowserManager;
