@@ -1,13 +1,12 @@
 import { Ai } from "../ai/agent";
 import BrowserManager from "../browser/browserManager";
-import { AiQaConfig } from "../core/types";
 
 export class QaAgent {
     private browser: BrowserManager;
     private ai: Ai;
 
-    constructor(config: AiQaConfig) {
-        this.browser = new BrowserManager(config.baseUrl);
+    constructor() {
+        this.browser = new BrowserManager();
         this.ai = new Ai({
             takeScreenshot: this.takeScreenshot.bind(this),
             takeAction: this.takeAction.bind(this)

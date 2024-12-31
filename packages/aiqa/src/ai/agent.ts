@@ -2,17 +2,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import { SYSTEM_PROMPT } from "./prompts";
 import fs from "fs/promises";
 import pc from "picocolors";
-import { BetaMessageParam, BetaToolUnion } from "@anthropic-ai/sdk/resources/beta/messages/messages";
-
-const TOOLS = [
-    {
-        type: "computer_20241022",
-        name: "computer",
-        display_width_px: parseInt(process.env.SCREEN_WIDTH || '1920'),
-        display_height_px: parseInt(process.env.SCREEN_HEIGHT || '1080'),
-        display_number: 1,
-    }
-] as BetaToolUnion[]
+import { BetaMessageParam } from "@anthropic-ai/sdk/resources/beta/messages/messages";
+import { config } from "../util/config";
 
 type ToolResult = {
     id: string;
@@ -36,7 +27,7 @@ export class Ai {
     private callbacks: AiCallbacks;
 
     constructor(callbacks: AiCallbacks) {
-        this.anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+        this.anthropic = new Anthropic({ apiKey: config().anthropicApiKey });
         this.callbacks = callbacks;
     }
 
@@ -48,9 +39,17 @@ export class Ai {
         while (true) {
             const message = await this.anthropic.beta.messages.create({
                 system: SYSTEM_PROMPT,
-                model: process.env.ANTHROPIC_MODEL!,
+                model: config().anthropicModel,
                 max_tokens: 1024,
-                tools: TOOLS,
+                tools: [
+                    {
+                        type: "computer_20241022",
+                        name: "computer",
+                        display_width_px: config().screenWidth,
+                        display_height_px: config().screenHeight,
+                        display_number: 1,
+                    }
+                ],
                 messages: messages,
                 betas: ["computer-use-2024-10-22"],
             });

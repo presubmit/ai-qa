@@ -17,6 +17,9 @@ importers:
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.2
       fs:
         specifier: 0.0.1-security
         version: 0.0.1-security

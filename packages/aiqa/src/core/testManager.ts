@@ -1,13 +1,11 @@
 import { QaAgent } from "../qa/agent";
-import { AiQaConfig, TestFile } from "./types";
+import { TestFile } from "./types";
 import pc from "picocolors";
 
 class TestManager {
-  private config: AiQaConfig;
   private testFile: TestFile;
 
-  constructor(config: AiQaConfig, testFile: TestFile) {
-    this.config = config;
+  constructor(testFile: TestFile) {
     this.testFile = testFile;
   }
 
@@ -19,7 +17,7 @@ class TestManager {
       await hook();
     }
 
-    const agent = new QaAgent(this.config);
+    const agent = new QaAgent();
 
     for (const { instructions } of this.testFile.tests) {
       console.log(`Starting: ${instructions}`);
@@ -29,7 +27,8 @@ class TestManager {
           await hook();
         }
 
-        await agent.runTest(instructions); // Run the test
+        // Run the test
+        await agent.runTest(instructions);
 
         // Run afterEach hooks
         for (const hook of this.testFile.afterEachHooks) {
@@ -50,8 +49,8 @@ class TestManager {
   }
 }
 
-async function runTests(testFile: TestFile, config: AiQaConfig): Promise<void> {
-  return await new TestManager(config, testFile).runTests();
+async function runTests(testFile: TestFile): Promise<void> {
+  return await new TestManager(testFile).runTests();
 }
 
 export default runTests;

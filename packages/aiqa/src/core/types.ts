@@ -1,13 +1,3 @@
-export interface AiQaConfig {
-    anthropicKey: string;
-    baseUrl: string;
-    testDirectory: string; // Directory containing test files
-    parallel?: boolean;    // Whether to run tests in parallel
-    concurrency?: number;  // Maximum concurrency for parallel execution
-    grep?: string;         // Regex string to filter test names
-    timeout?: number;      // Global timeout for tests (milliseconds)
-}
-
 export interface TestCase {
   instructions: string;
 }

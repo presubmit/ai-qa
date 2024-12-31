@@ -1,2 +1,2 @@
 export { test, beforeAll, beforeEach, afterEach, afterAll } from "./core/testCase";
-export { AiQaConfig } from "./core/types";
+export { ExternalConfig as AiQaConfig} from "./util/config";

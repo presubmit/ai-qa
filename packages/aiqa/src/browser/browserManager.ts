@@ -2,6 +2,7 @@ import { Browser, BrowserContext, chromium, Page } from 'playwright';
 import { execSync } from "child_process";
 import pc from "picocolors"
 import fs from "fs/promises";
+import { config } from '../util/config';
 
 export class BrowserManager {
     private browser: Browser | null = null;
@@ -10,8 +11,8 @@ export class BrowserManager {
     private baseUrl: string;
     private cursorInitialized = false;
 
-    constructor(baseUrl: string) {
-        this.baseUrl = baseUrl;
+    constructor() {
+        this.baseUrl = config().baseUrl;
     }
 
     async launch() {
@@ -34,7 +35,7 @@ export class BrowserManager {
         }
 
         this.context = await this.browser.newContext({
-            viewport: { width: parseInt(process.env.SCREEN_WIDTH || '1920'), height: parseInt(process.env.SCREEN_HEIGHT || '1080') },
+            viewport: { width: config().screenWidth, height: config().screenHeight },
         });
 
         this.page = await this.context.newPage();
@@ -221,7 +222,7 @@ export class BrowserManager {
         console.log(pc.blue('Taking screenshot'));
         if (!this.page) throw new Error('Page not initialized');
 
-        const baseFolder = ".aiqa/screenshots";
+        const baseFolder = config().screenshotsDir;
         if (!(await fs.access(baseFolder).then(() => true).catch(() => false))) {
             await fs.mkdir(baseFolder, { recursive: true });
         }

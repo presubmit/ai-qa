@@ -1,9 +1,9 @@
-import { AiQaConfig } from "./src/core/types";
+import { AiQaConfig } from "./src/index";
 
 const config: AiQaConfig = {
-    anthropicKey: process.env.ANTHROPIC_API_KEY!,
+    anthropicApiKey: process.env.ANTHROPIC_API_KEY!,
     baseUrl: "https://github.com/orgs/presubmit/repositories",
-    testDirectory: "tests",
+    testDir: "tests",
 };
 
 export default config;
